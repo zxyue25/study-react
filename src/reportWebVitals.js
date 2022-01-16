@@ -1,3 +1,4 @@
+// 页面性能分析文件需要web-vitals库的支持
 const reportWebVitals = onPerfEntry => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {

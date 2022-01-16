@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-爬虫
+爬虫协议规则文件

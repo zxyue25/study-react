@@ -1,3 +1,4 @@
+// 入口文件
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -5,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  // 严格模式，开启帮助检查一些React即将废弃的API等，比如ref不能用字符串类型等
   <React.StrictMode>
     <App />
   </React.StrictMode>,
