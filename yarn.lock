@@ -9015,6 +9015,11 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+pubsub-js@^1.9.4:
+  version "1.9.4"
+  resolved "http://registry.m.jd.com/pubsub-js/download/pubsub-js-1.9.4.tgz#5c8678600e34e95b1269e96c17e1b51dab3ecb5a"
+  integrity sha1-XIZ4YA406VsSaelsF+G1Has+y1o=
+
 pump@^2.0.0:
   version "2.0.1"
   resolved "http://registry.m.jd.com/pump/download/pump-2.0.1.tgz"
