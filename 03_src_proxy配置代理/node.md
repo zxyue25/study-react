@@ -7,3 +7,4 @@
 ```
 
 - setupProxy.js
+配置代理，具体见setupProxy文件
