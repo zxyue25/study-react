@@ -1,0 +1,15 @@
+.link{
+    display: block;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.active{
+    background-color: royalblue;
+    color: #fff;
+}
+
+.nav-active {
+    background-color: sandybrown;
+    color: #fff;
+}
