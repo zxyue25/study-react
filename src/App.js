@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react'
-import Search from './components/search'
-import List from './components/list'
-=======
 import React, { Component } from "react";
 import { NavLink, Link, Route, Routes } from "react-router-dom";
 import Header from "./components/header";
@@ -10,18 +5,11 @@ import Footer from "./components/footer";
 import Home from "./pages/home";
 import About from "./pages/about";
 import "./app.css";
->>>>>>> master
 
 export default class App extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <Search />
-        <List />
-      </div>
-    )
-=======
         路由的基本使用
         <Header />
         <Link className="link" to="/home">home</Link>
@@ -42,6 +30,5 @@ export default class App extends Component {
         <Footer />
       </div>
     );
->>>>>>> master
   }
 }
