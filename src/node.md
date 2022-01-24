@@ -116,7 +116,7 @@ export default class AppNavLink extends Component {
 ```
 
 ## 九、Switch的使用
-> router V4有这个标签
+> router V5有这个标签，V6已被重命名为`<Routes>`
 单一匹配路由，通常情况下path和component是一一对应关系，Switch可以提高路由匹配效率
 
 ## 十、多级路径刷线页面样式丢失问题
@@ -126,6 +126,25 @@ export default class AppNavLink extends Component {
 
 ## 十一、精准匹配与模糊匹配
 V6默认开启精准匹配，加/*开启模糊匹配
+
+## 十二、重定向
+一般写在所有路由的最下方，当所有路由无法匹配的时候，跳转到`Navigate`指定的路由
+```jsx
+import { Route, Routes, Navigate } from "react-router-dom";
+
+{/* 展示区 */}
+<Routes className="route">
+    <Route path="/home" element={<Home animate={true} />} />
+    <Route path="/about" element={<About animate={true} />} />
+    <Route path="*" element={<Navigate to="/about" />} />
+</Routes>
+```
+
+## 十三、嵌套路由
+- 注册子路由需要写父路由的`path`值
+- 路由的匹配是按照注册路由的顺序执行的
+
+
 
 
 
