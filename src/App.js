@@ -13,8 +13,8 @@ export default class App extends Component {
         <Header />
         {/* 导航区 */}
         {[
-          { to: "home/*", children: "home" },
-          { to: "about/*", children: "about" },
+          { to: "home", children: "home" },
+          { to: "about", children: "about" },
         ].map((nav) => (
           <AppNavLink key={nav.to} {...nav} />
         ))}

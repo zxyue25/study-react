@@ -1,5 +1,3 @@
-# 路由
-
 ## 一、什么是路由
 一个路由就是一个`映射关系`
 
@@ -33,9 +31,10 @@ react的路由库分为三类
 - any
 所以我们用`react-router-dom`包，作用如下
 - 专门用来实现一个SPA应用
+> 版本,V6：目前最新版，与V5有较大改动，主要用来拥抱`hooks`，很多钩子，类式组件使用不了
 
 ### 2、react-router-dom相关API
-内置组件
+**内置组件**
 - `<BrowserRouter>`
 - `<HashRouter>`
 - `<Route>`
@@ -43,10 +42,9 @@ react的路由库分为三类
 - `<Link>`
 - `<NavLink>`
 - `<Switch>` V6已经废弃
-  
-其他
 
-## 五、路由基本使用，Link&Route
+
+## 五、路由基本使用，Link、Route
 ### 1、导航区写`Link标签`
 `Link`标签上有`replace`参数，默认 false，即跳转路由要用 `push` 还是 `replace`
 ```js
@@ -98,7 +96,8 @@ ReactDOM.render(
     - 一般组件传啥收啥
     - 路由组件能收到外层`Route`组件传的`props`
 
-## 七、NavLink的使用
+## 七、NavLink
+### 1、基本使用
 `NavLink`使用，支持高亮颜色，高亮`class`名默认为`active`，支持自定义
 
 - V5通过`activeClassName`自定义选中态的类名
@@ -113,7 +112,7 @@ ReactDOM.render(
     home
 </NavLink>
 ```
-## 八、封装NavLink
+### 2、封装NavLink
 > 标签体内容是一个特殊的标签属性，通过`this.props.children`可以获取标签体内容
 封装为一个组件，避免NavLink高亮颜色重复写
 ```jsx
@@ -146,20 +145,21 @@ import AppNavLink from "./components/app-nav-link";
 }
 ```
 
-## 九、Switch的使用
+## 八、Switch的使用
 > router V5有这个标签，V6已被重命名为`<Routes>`
 **单一匹配路由**，通常情况下`path`和`component`是`一一对应`的关系，`Switch`可以提高路由匹配效率
 
-## 十、多级路径刷新页面样式丢失问题
+## 九、多级路径刷新页面样式丢失问题
 解决方案
 - `public/index.html` 中引入样式不写 `./` 写 `/`
 - `public/index.html` 中引入样式不写 `./` 写 `%PUBLIC_URL%`
 - 使用`HashRouter`
 
-## 十一、精准匹配与模糊匹配
-V6默认开启精准匹配，加`/*`开启模糊匹配
+## 十、精准匹配与模糊匹配
+- V5默认是**模糊匹配**，通过`在Route`配置加`exact`开启**精准匹配**
+- V6默认开启**精准匹配**，加`/*`开启**模糊匹配**
 
-## 十二、重定向
+## 十一、重定向
 一般写在所有路由的最下方，当所有路由无法匹配的时候，跳转到兜底的路由
 - V5通过`<Redirect to="/home" />`
 - V6已废除`Redirect`标签，通过`<Route path="*" element={<Navigate to="/home" />} />`
@@ -181,7 +181,7 @@ import { Route, Routes, Navigate, Redirect } from "react-router-dom";
 </Routes>
 ```
 
-## 十三、嵌套路由
+## 十二、嵌套路由
 V5注册子路由需要写父路由的`path`值，V6的版本都不需要写`/`，只需要地址就行，也`不需要你写前面的路径`，只需要你写下个路径是啥就行
 - 路由的匹配是按照注册路由的顺序执行的
 ```jsx
@@ -217,8 +217,8 @@ V5注册子路由需要写父路由的`path`值，V6的版本都不需要写`/`�
 // app.js
 {/* 导航区 */}
 {[
-    { to: "/home/*", children: "home" },
-    { to: "/about/*", children: "about" },
+    { to: "/home", children: "home" },
+    { to: "/about", children: "about" },
 ].map((nav) => (
     <AppNavLink key={nav.to} {...nav} />
 ))}
@@ -241,7 +241,7 @@ V5注册子路由需要写父路由的`path`值，V6的版本都不需要写`/`�
     <Route path="news" element={<HomeNews />} />
 </Routes>
 ```
-## 十四、路由向组件传递props
+## 十三、路由向组件传递props
 ### 1、params传参
 ```jsx
 // V5
@@ -285,5 +285,38 @@ const {id, title} = qs.parse(search)
 // 接收state参数
 const {id, title} = this.props.location.state
 ```
+## 十四、编程式路由导航
+- V5通过`this.props.history`上的`push`、`replace`、`go`、`back`、`forward`方法
+- V6通过`useNavigate`的`navigate`
+    - `naviaget(to)`默认就是`history.push`
+    - `naviaget(to, { replace: true })`就是 `history.replace`
+    - `naviaget(to: number)`就是`、history.go`
+```jsx
+// V5
+this.props.history.push('XX')
+this.props.history.replace('XX')
+this.props.history.go(2)
+this.props.history.back()
+this.props.history.forward()
 
-## 十五、编程式路由导航
+// V6
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate();
+<button onClick={() => navigate(`detail/${news.id}/${news.title}`)}>push</button>
+<button onClick={() => navigate(`detail/${news.id}/${news.title}`, {replace: true})}>replace</button>
+```
+
+## 十五、withRouter
+`withRouter`可以加工一般组件，让一般组件具备路由组件所特有的`API`，返回的是一个新组件
+> V6已废弃，V5中一般组件(非路由组件)想要用路由的API，比如`this.props.history.push()`，需要用`withRouter`包一层
+
+## 十六、BrowserRouter & HashRouter
+- **原理**不一样
+  - BrowserRouter使用的是H5的`history` API，不兼容IE9以下版本
+  - HashRouter使用的是URL的哈希值
+- **url表现形式**不一样
+  - BrowserRouter的路径中没有`#`
+  - HashRouter的路径中包含`#`
+- **刷新后对路由`state`参数的影响**
+  - BrowserRouter`没有任何影响`，因为`state`存在`history`对象中
+  - HashRouter刷新后会`导致路由state参数的丢失`
