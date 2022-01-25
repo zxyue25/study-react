@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Link, Route, Routes, Navigate } from "react-router-dom";
+import {Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import AppNavLink from "./components/app-nav-link";
@@ -11,18 +11,19 @@ export default class App extends Component {
     return (
       <div>
         <Header />
+        {/* 导航区 */}
         {[
-          { to: "/home", children: "home" },
-          { to: "/about", children: "about" },
+          { to: "home/*", children: "home" },
+          { to: "about/*", children: "about" },
         ].map((nav) => (
           <AppNavLink key={nav.to} {...nav} />
         ))}
 
         {/* 展示区 */}
         <Routes className="route">
-          <Route path="/home" element={<Home animate={true} />} />
-          <Route path="/about" element={<About animate={true} />} />
-          <Route path="*" element={<Navigate to="/about" />} />
+          <Route path="home/*" element={<Home />} />
+          <Route path="about/*" element={<About />} />
+          <Route path="*" element={<Navigate to="home" />} />
         </Routes>
         <Footer />
         
