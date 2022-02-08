@@ -2,6 +2,6 @@
 import { createStore, applyMiddleware } from "redux";
 // 用于支持异步action
 import thunk from 'redux-thunk'
-import countReducers from './conut_reducer'
+import countReducers from './reducer/conut'
 
 export default createStore(countReducers, applyMiddleware(thunk))

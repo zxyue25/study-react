@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import {
-  createIncrementAction,
-  createDecrementAction,
-  createIncrementAsyncAction,
-} from "../../redux/count_action";
+  increment,
+  decrement,
+  incrementAsync,
+} from "../../redux/actions/count";
 
 import React, { Component } from "react";
 
@@ -54,17 +54,17 @@ class CountUI extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ count: state });
+const mapStateToProps = (state) => ({ count: state.count });
 
 const mapDispatchToProps = (dispatch) => ({
   increment: (number) => {
-    dispatch(createIncrementAction(number));
+    dispatch(increment(number));
   },
   incrementAsync: (number) => {
-    dispatch(createIncrementAsyncAction(number, 500));
+    dispatch(incrementAsync(number, 500));
   },
   decrement: (number) => {
-    dispatch(createDecrementAction(number));
+    dispatch(decrement(number));
   },
 });
 
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 // mapDispatchToProps的简写，返回object
 export default connect(mapStateToProps, {
-  increment: createIncrementAction,
-  incrementAsync: createIncrementAsyncAction,
-  decrement: createDecrementAction,
+  increment,
+  incrementAsync,
+  decrement,
 })(CountUI);
