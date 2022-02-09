@@ -3,7 +3,7 @@ import {
   increment,
   decrement,
   incrementAsync,
-} from "../../redux/actions/count";
+} from "../../store/actions/count";
 
 import React, { Component } from "react";
 

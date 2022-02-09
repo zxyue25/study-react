@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addPerson } from "../../redux/actions/person";
+import { addPerson } from "../../store/actions/person";
 
 class PersonUI extends Component {
   addPerson = () => {
