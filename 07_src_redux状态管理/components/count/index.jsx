@@ -4,7 +4,7 @@ import {
   createIncrementAction,
   createDecrementAction,
   createIncrementAsyncAction,
-} from "../../redux/count_action";
+} from "../../redux/action/count";
 
 export default class Count extends Component {
   // 监听redux中状态变化，只有变化，就需要重新调用render

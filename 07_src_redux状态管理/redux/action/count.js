@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from "./constants";
+import { INCREMENT, DECREMENT } from "../constants";
 
 // 普通action的值为object `{type: INCREMENT, data }`
 export const createIncrementAction = (data) => ({ type: INCREMENT, data });
