@@ -1,10 +1,14 @@
-import React, { Component } from "react";
-import {Route, Routes, Navigate } from "react-router-dom";
+import React, { Component, lazy, Suspense } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import AppNavLink from "./components/app-nav-link";
-import Home from "./pages/home";
-import About from "./pages/about";
+// import Home from "./pages/home";
+// import About from "./pages/about";
+
+// 路由懒加载
+const Home = lazy(() => import("./pages/home"));
+const About = lazy(() => import("./pages/about"));
 
 export default class App extends Component {
   render() {
@@ -20,13 +24,15 @@ export default class App extends Component {
         ))}
 
         {/* 展示区 */}
-        <Routes className="route">
-          <Route path="home/*" element={<Home />} />
-          <Route path="about/*" element={<About />} />
-          <Route path="*" element={<Navigate to="home" />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes className="route">
+            <Route path="home/*" element={<Home />} />
+            <Route path="about/*" element={<About />} />
+            <Route path="*" element={<Navigate to="home" />} />
+          </Routes>
+        </Suspense>
         <Footer />
-        
+
         {/* <h3>路由的基本使用</h3>
         <Link className="link" to="/home/">
           home
