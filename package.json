@@ -47,6 +47,25 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.9"
+    "commitlint-config-selling": "0.0.1",
+    "eslint-config-selling": "0.0.1",
+    "husky": "^7.0.4",
+    "redux-devtools-extension": "^2.13.9",
+    "stylelint-config-selling": "0.0.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,ts,tsx,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.less": [
+      "stylelint --config  ./.stylelintrc --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
