@@ -47,11 +47,12 @@
     ]
   },
   "devDependencies": {
-    "@jd-antelope/commitlint-config-selling": "0.0.1",
-    "eslint-config-selling": "0.0.1",
+    "@jd-antelope/commitlint-config-selling": "0.0.3",
+    "commitlint-config-selling": "0.0.3",
+    "eslint-config-selling": "0.0.3",
     "husky": "^7.0.4",
     "redux-devtools-extension": "^2.13.9",
-    "stylelint-config-selling": "0.0.1"
+    "stylelint-config-selling": "0.0.3"
   },
   "lint-staged": {
     "*.{js,jsx,json,ts,tsx,vue}": [
