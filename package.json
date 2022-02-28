@@ -54,6 +54,12 @@
     "redux-devtools-extension": "^2.13.9",
     "stylelint-config-selling": "0.0.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,json,ts,tsx,vue}": [
       "eslint --fix",
@@ -63,11 +69,5 @@
       "stylelint --config  ./.stylelintrc --fix",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
