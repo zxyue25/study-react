@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class App extends Component {
   getData = () => {
@@ -14,9 +14,9 @@ export default class App extends Component {
       }
     )
   }
-  render() {
+  render () {
     return <div>
-      <button onClick={this.getData}>点我获取数据</button>
-    </div>;
+      <button onClick={ this.getData }>点我获取数据</button>
+    </div>
   }
 }
